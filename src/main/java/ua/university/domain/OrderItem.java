@@ -1,0 +1,28 @@
+package ua.university.domain;
+public class OrderItem {
+    private final String name;
+    private final int quantity;
+    private final Money price;
+
+    public OrderItem(String name, int quantity, Money price) {
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Money getPrice() {
+        return price;
+    }
+
+    public Money getTotal() {
+        return price.multiply(quantity);
+    }
+}
