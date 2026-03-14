@@ -1,32 +1,30 @@
 package ua.university.domain;
 
-import java.math.BigDecimal;
-import java.util.Objects;
-
 public class Money {
-    private final BigDecimal value;
+    private final double value;
 
     public Money(double value) {
-        this.value = BigDecimal.valueOf(value);
+        this.value = value;
     }
-    public BigDecimal getValue() {
+
+    public double getValue() {
         return value;
     }
 
     public Money add(Money other) {
-        return new Money(this.value.add(other.value).doubleValue());
+        return new Money(this.value + other.value);
     }
 
     public Money multiply(double factor) {
-        return new Money(this.value.multiply(BigDecimal.valueOf(factor)).doubleValue());
+        return new Money(this.value * factor);
     }
 
     public boolean greater(Money other) {
-        return this.value.compareTo(other.value) > 0;
+        return this.value > other.value;
     }
 
     public boolean less(Money other) {
-        return this.value.compareTo(other.value) < 0;
+        return this.value < other.value;
     }
 
     @Override
@@ -38,11 +36,11 @@ public class Money {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Money money)) return false;
-        return Objects.equals(value, money.value);
+        return Double.compare(money.value, value) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Double.hashCode(value);
     }
 }
